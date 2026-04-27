@@ -17,12 +17,12 @@ export const RACES: Race[] = [
         description: "Livres e selvagens, os elfos protegem suas florestas utilizando furtividade e disparando flechas mortíferas em meio às árvores.\nEles constroem seus lares em plena harmonia com a natureza, com tanta perfeição que os viajantes muitas vezes não percebem que invadiram uma comunidade élfica até ser tarde demais."
     },
     {
-        id: "orcs",
+        id: "orc",
         name: "Orc",
         description: "Os orcs são criaturas bestiais e beligerantes, que habitam o subterrâneo ou regiões selvagens. Esses seres monstruosos são, quase sem exceção, saqueadores e assassinos, atacando comunidades civilizadas para roubar e matar.\nSão onívoros e de hábitos noturnos, preferindo viver no subterrâneo - o que lhes provoca um ódio especial dos anões. Possuem traços selvagens, como presas, focinho e pêlos."
     },
     {
-        id: "nightElf",
+        id: "nightelf",
         name: "Elfo Noturno",
         description: "Elfos noturnos são de origem desconhecida, no entanto algumas lendas dizem que os elfos foram criados para governar dia e os elfos noturnos para governar a noite. A tempos atrás as duas raças eram unidas e fortes, mas com o tempo começaram a surgir disputas por terras entre as duas raças e no fim separaram as terras, os elfos noturnos acabaram com as terras mais pobres e escuras, mas sobrevivem bem naquela zona e sua cidade é  considerada quase impenetrável graças a isso.\nSão graciosos e mais gentis que os elfos, mas quando irritados são capazes de causar tamanha destruição, a cor de sua pele varia entre tons normais ou puxados para o roxo."
     },

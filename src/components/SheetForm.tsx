@@ -1,66 +1,55 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RACES } from "../data/races";
 import { CHARACTER_CLASSES } from "../data/characterClasses";
+import { CharacterCard } from "./CharacterCard";
+import Button from "./Button";
 
 export function SheetForm() {
-  const [character, setCharacter] = useState({
-    name: "",
-    race: "",
-    class: "",
-    gender: "",
+  const [character, setCharacter] = useState(() => {
+    const savedCharacter = localStorage.getItem("rpgCharacterData");
+    if (savedCharacter) {
+      return JSON.parse(savedCharacter);
+    }
+    return {
+      name: "",
+      race: "",
+      class: "",
+      gender: "",
+    };
   });
 
-  function getCharacterImage() {
-    const { race, class: characterClass, gender } = character;
-    if (!race || !characterClass || !gender) {
-      return "/images/placeholder.png"; // Return a placeholder image if any attribute is missing
-    }
-    // Return the appropriate character image based on the selected attributes
-    return `/images/${race}-${characterClass}-${gender}.jpg`;
-  }
+  useEffect(() => {
+    localStorage.setItem("rpgCharacterData", JSON.stringify(character));
+  }, [character]);
 
-  function getCharacterName() {
-    const {name} = character;
-    if (!name) {
-      return "Nome do Personagem";
-    }
-    return name;
-  }
-
-  function getRaceName() {
-    const race = RACES.find((r) => r.id === character.race);
-    return race ? race.name : "Raça do personagem";
-  }
-
-  function getClassName() {
-    const charClass = CHARACTER_CLASSES.find((c) => c.id === character.class);
-    return charClass ? charClass.name : "& Classe do personagem";
-  }
+  const handleChange = (
+    e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>,
+  ) => {
+    const { name, value } = e.target;
+    setCharacter((prevCharacter: any) => ({
+      ...prevCharacter,
+      [name]: value,
+    }));
+  };
 
   return (
-    <form className="w-full max-w-lg bg-amber-100/70 shadow-md rounded px-8 pt-6 pb-8 mb-4 gap-2 flex flex-col">
+    <form className="w-full max-w-lg md:max-w-3xl lg:max-w-5xl bg-amber-100/70 shadow-md rounded-2xl px-8 pt-6 pb-8 mb-4 gap-3 flex flex-col">
       <input
         type="text"
+        name="name"
+        value={character.name}
         placeholder="Nome do Personagem"
-        className="bg-amber-100/70 text-amber-950 placeholder:text-amber-950 border-2 rounded border-amber-950"
-        onChange={(e) =>
-          setCharacter({
-            ...character,
-            name: e.target.value,
-          })
-        }
+        className="bg-amber-100/70 text-amber-950 placeholder:text-amber-950 border-2 rounded border-amber-950 p-1.5"
+        maxLength={30}
+        onChange={handleChange}
       />
 
       <select
         name="race"
         id="race"
-        className="bg-amber-100/70 text-amber-950 placeholder:text-amber-950 border-2 rounded border-amber-950"
-        onChange={(e) =>
-          setCharacter({
-            ...character,
-            race: e.target.value,
-          })
-        }
+        value={character.race}
+        className="bg-amber-100/70 text-amber-950 placeholder:text-amber-950 border-2 rounded border-amber-950 p-1.5"
+        onChange={handleChange}
       >
         <option value="">Selecione a Raça</option>
         {RACES.map((race) => (
@@ -71,15 +60,11 @@ export function SheetForm() {
       </select>
 
       <select
-        name="characterClass"
+        name="class"
         id="characterClass"
-        className="bg-amber-100/70 text-amber-950 placeholder:text-amber-950 border-2 rounded border-amber-950"
-        onChange={(e) =>
-          setCharacter({
-            ...character,
-            class: e.target.value,
-          })
-        }
+        value={character.class}
+        className="bg-amber-100/70 text-amber-950 placeholder:text-amber-950 border-2 rounded border-amber-950 p-1.5"
+        onChange={handleChange}
       >
         <option value="">Selecione a Classe</option>
         {CHARACTER_CLASSES.map((charClass) => (
@@ -92,29 +77,22 @@ export function SheetForm() {
       <select
         name="gender"
         id="gender"
-        className="bg-amber-100/70 text-amber-950 placeholder:text-amber-950 border-2 rounded border-amber-950"
-        onChange={(e) =>
-          setCharacter({
-            ...character,
-            gender: e.target.value,
-          })
-        }
+        value={character.gender}
+        className="bg-amber-100/70 text-amber-950 placeholder:text-amber-950 border-2 rounded border-amber-950 p-1.5"
+        onChange={handleChange}
       >
-        <option value="">
-          Selecione o Gênero
-        </option>
+        <option value="">Selecione o Gênero</option>
         <option value="male">Masculino</option>
         <option value="female">Feminino</option>
       </select>
 
-      <div className="flex flex-col justify-between items-center">
-        <h3 className="text-amber-950 font-bold font-serif text-2xl">Prévia do Personagem</h3>
-          <img
-            src={getCharacterImage()}
-            alt="Personagem"
-            className="w-3/4 h-1/2 object-cover border-2 border-amber-950 rounded-3xl mt-4"
-          />
-        <h3 className="text-amber-950 font-bold font-serif text-2xl">{getCharacterName()} - {getRaceName()} {getClassName()}</h3>
+      <CharacterCard character={character} />
+
+      <div className="flex flex-col items-center">
+        <Button
+          text="Salvar Personagem"
+          onclick={() => alert("Personagem salvo com sucesso!")}
+        />
       </div>
     </form>
   );
