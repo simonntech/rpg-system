@@ -1,4 +1,4 @@
-export const CharacterSheet = () => {
+export default function CharacterSheet() {
     return (
         <div className="flex flex-col items-center justify-between min-h-screen">
             <h1 className="text-4xl font-bold mt-8">Ficha de Personagem</h1>

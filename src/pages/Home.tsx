@@ -1,8 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import Logo from "../assets/logo.png";
 import Button from "../components/Button";
-import { goToCreateCharacter } from "../functions/router";
 
 export default function Home() {
+  const navigate = useNavigate();
+
+  function goToCreateCharacter() {
+    navigate("/character-sheet");
+  }
+  
   return (
     <div className="flex flex-col items-center justify-between min-h-screen">
       <div className="m-8 flex items-center justify-center">
