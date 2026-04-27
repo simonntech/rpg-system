@@ -1,5 +1,6 @@
 import Logo from "../assets/logo.png";
 import Button from "../components/Button";
+import { goToCreateCharacter } from "../functions/router";
 
 export default function Home() {
   return (
@@ -16,7 +17,7 @@ export default function Home() {
           gratuita!
         </p>
       </div>
-      <Button text="Entrar" />
+      <Button text="Entrar" onclick={goToCreateCharacter} />
     </div>
   );
 }
