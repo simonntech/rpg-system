@@ -1,35 +1,16 @@
-import { useState, useEffect } from "react";
 import { RACES } from "../data/races";
 import { CHARACTER_CLASSES } from "../data/characterClasses";
 import { CharacterCard } from "./CharacterCard";
+import { useCharacterForm } from "../hooks/useCharacterForm";
+import { characterService } from "../services/characterService";
 import Button from "./Button";
 
 export function SheetForm() {
-  const [character, setCharacter] = useState(() => {
-    const savedCharacter = localStorage.getItem("rpgCharacterData");
-    if (savedCharacter) {
-      return JSON.parse(savedCharacter);
-    }
-    return {
-      name: "",
-      race: "",
-      class: "",
-      gender: "",
-    };
-  });
+  const { character, handleChange } = useCharacterForm();
 
-  useEffect(() => {
-    localStorage.setItem("rpgCharacterData", JSON.stringify(character));
-  }, [character]);
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>,
-  ) => {
-    const { name, value } = e.target;
-    setCharacter((prevCharacter: any) => ({
-      ...prevCharacter,
-      [name]: value,
-    }));
+  const handleSave = () => {
+    characterService.save(character);
+    alert("Personagem enviado para a taverna!");
   };
 
   return (
@@ -47,7 +28,7 @@ export function SheetForm() {
       <select
         name="race"
         id="race"
-        value={character.race}
+        value={character.race ? character.race.id : ""}
         className="bg-amber-100/70 text-amber-950 placeholder:text-amber-950 border-2 rounded border-amber-950 p-1.5"
         onChange={handleChange}
       >
@@ -62,7 +43,7 @@ export function SheetForm() {
       <select
         name="class"
         id="characterClass"
-        value={character.class}
+        value={character.class ? character.class.id : ""}
         className="bg-amber-100/70 text-amber-950 placeholder:text-amber-950 border-2 rounded border-amber-950 p-1.5"
         onChange={handleChange}
       >
@@ -89,10 +70,7 @@ export function SheetForm() {
       <CharacterCard character={character} />
 
       <div className="flex flex-col items-center">
-        <Button
-          text="Salvar Personagem"
-          onclick={() => alert("Personagem salvo com sucesso!")}
-        />
+        <Button text="Salvar Personagem" onclick={handleSave} />
       </div>
     </form>
   );
