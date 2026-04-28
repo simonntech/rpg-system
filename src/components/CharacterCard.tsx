@@ -75,7 +75,7 @@ export function CharacterCard({ character }: { character: any }) {
       >
         <div className="mb-6">
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-amber-100 font-bold">
+            <span className="text-amber-100 font-bold text-2xl">
               {classObj.title || classObj.name}
             </span>
           </div>
@@ -86,8 +86,8 @@ export function CharacterCard({ character }: { character: any }) {
 
         <div className="mb-6">
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-amber-100 font-bold">
-              Raça: {raceObj.name}
+            <span className="text-amber-100 font-bold text-2xl">
+              {raceObj.name}
             </span>
           </div>
           <p className="text-sm text-gray-300 leading-relaxed text-justify whitespace-pre-line">
@@ -96,7 +96,7 @@ export function CharacterCard({ character }: { character: any }) {
         </div>
 
         <div className="mt-auto">
-          <h4 className="text-sm font-bold text-amber-100 uppercase tracking-widest mb-3">
+          <h4 className="font-bold text-amber-100 uppercase mb-3 text-xl">
             Bônus de Classe
           </h4>
           <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 text-center">
