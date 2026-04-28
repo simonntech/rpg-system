@@ -11,8 +11,22 @@ export default function Gallery() {
     }
   }, []);
 
+  const handleDeleteCharacter = (idToDelete: string, characterName: string) => {
+    const confirmDelete = window.confirm(
+      `Tem certeza que deseja excluir ${characterName}? Esta ação não pode ser desfeita!`,
+    );
+
+    if (confirmDelete) {
+      const updatedList = characters.filter(
+        (char: any) => char.id !== idToDelete,
+      );
+      setCharacters(updatedList);
+      localStorage.setItem("rpgSavedCharacters", JSON.stringify(updatedList));
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-gray-900 p-8">
+    <div className="min-h-screen bg-gray-950 p-8">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-4xl font-serif font-bold text-amber-50">
           Galeria de Personagens
@@ -27,13 +41,9 @@ export default function Gallery() {
           Nenhum herói encontrado nesta galeria ainda...
         </p>
       ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 ">
           {characters.map((char: any) => (
-            <CharacterCard
-              key={char.id}
-              character={char}
-              variant="mini" 
-            />
+            <CharacterCard key={char.id} character={char} variant="mini" onDelete={() => handleDeleteCharacter(char.id, char.name)}/>
           ))}
         </div>
       )}
