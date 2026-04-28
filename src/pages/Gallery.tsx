@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { CharacterCard } from "../components/CharacterCard";
 
 export default function Gallery() {
   const [characters, setCharacters] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const saved = localStorage.getItem("rpgSavedCharacters");
@@ -25,6 +27,11 @@ export default function Gallery() {
     }
   };
 
+  const handleEditCharacter = (charToEdit: any) => {
+    localStorage.setItem("rpgCharacterDraft", JSON.stringify(charToEdit));
+    navigate("/gallery");
+  };
+
   return (
     <div className="min-h-screen bg-gray-950 p-8">
       <div className="flex justify-between items-center mb-8">
@@ -43,7 +50,13 @@ export default function Gallery() {
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 ">
           {characters.map((char: any) => (
-            <CharacterCard key={char.id} character={char} variant="mini" onDelete={() => handleDeleteCharacter(char.id, char.name)}/>
+            <CharacterCard
+              key={char.id}
+              character={char}
+              variant="mini"
+              onDelete={() => handleDeleteCharacter(char.id, char.name)}
+              onEdit={() => handleEditCharacter(char)}
+            />
           ))}
         </div>
       )}
