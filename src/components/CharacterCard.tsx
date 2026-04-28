@@ -1,8 +1,15 @@
 import { useState } from "react";
 import { RACES } from "../data/races";
 import { CHARACTER_CLASSES } from "../data/characterClasses";
+import { Link } from "react-router-dom";
 
-export function CharacterCard({ character }: { character: any }) {
+export function CharacterCard({
+  character,
+  variant = "full",
+}: {
+  character: any;
+  variant?: "full" | "mini";
+}) {
   const [showMobileDetails, setShowMobileDetails] = useState(false);
 
   const { name, race, class: characterClass, gender } = character;
@@ -33,6 +40,34 @@ export function CharacterCard({ character }: { character: any }) {
           />
         </div>
       </div>
+    );
+  }
+
+  if (variant === "mini") {
+    return (
+      <Link to={`/character/${character.id}`}>
+        <div className="relative w-full aspect-3/4 rounded-2xl overflow-hidden shadow-xl border border-[#B78652] transition-transform hover:-translate-y-2 hover:shadow-2xl group">
+          <img
+            src={getCharacterImage()}
+            alt="Personagem"
+            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+          <img
+            src="/images/frame.png"
+            alt="Moldura"
+            className="absolute inset-0 w-full h-full z-10 pointer-events-none object-fill"
+          />
+          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-linear-to-t from-black via-black/80 to-transparent"></div>
+          <div className="absolute bottom-4 left-0 right-0 px-3 pb-1 text-center z-10">
+            <h3 className="text-amber-100 font-serif font-black text-2xl tracking-tight leading-tight [text-shadow:2px_2px_0_rgb(67_20_7/80%)] mb-2">
+              {getCharacterName()}
+            </h3>
+            <p className="text-black font-sans text-xl sm:text-xs font-bold uppercase inline-block px-2 py-0.5 rounded-sm">
+              {raceObj.name} {classObj.name}
+            </p>
+          </div>
+        </div>
+      </Link>
     );
   }
 
@@ -71,7 +106,7 @@ export function CharacterCard({ character }: { character: any }) {
       </div>
 
       <div
-        className={`md:w-2/3 border-2 bg-[url(../../public/images/bg-card.jpg)] border-[#B78652] p-6 md:p-8 flex-col gap-6 md:flex ${showMobileDetails ? "flex" : "hidden"}`}
+        className={`md:w-2/3 border-2 bg-[url(/images/bg-card.jpg)] border-[#B78652] p-6 md:p-8 flex-col gap-6 md:flex ${showMobileDetails ? "flex" : "hidden"}`}
       >
         <div className="mb-6">
           <div className="flex items-center gap-2 mb-2">
