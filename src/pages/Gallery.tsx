@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { CharacterCard } from "../components/CharacterCard";
+import SecondaryButton from "../components/SecondaryButton";
 
 export default function Gallery() {
   const [characters, setCharacters] = useState([]);
@@ -24,6 +25,8 @@ export default function Gallery() {
       );
       setCharacters(updatedList);
       localStorage.setItem("rpgSavedCharacters", JSON.stringify(updatedList));
+      setCharacters(updatedList);
+      localStorage.removeItem("rpgCharacterDeaft");
     }
   };
 
@@ -31,6 +34,10 @@ export default function Gallery() {
     localStorage.setItem("rpgCharacterDraft", JSON.stringify(charToEdit));
     navigate("/gallery");
   };
+
+  function goToCreateCharacter() {
+    navigate("/character-sheet");
+  }
 
   return (
     <div className="min-h-screen bg-gray-950 p-8">
@@ -46,6 +53,7 @@ export default function Gallery() {
       {characters.length === 0 ? (
         <p className="text-gray-400 text-center">
           Nenhum herói encontrado nesta galeria ainda...
+          <SecondaryButton text="Criar" onclick={goToCreateCharacter} />
         </p>
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 ">
