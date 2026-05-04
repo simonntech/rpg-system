@@ -2,14 +2,12 @@ import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { CharacterCard } from "../components/CharacterCard";
 
-// IMPORTANTE: Certifique-se de que você criou esse arquivo no passo anterior!
 import { PrintableSheet } from "../components/PrintableSheet"; 
 
 export default function CharacterDetails() {
   const { id } = useParams(); 
   const [character, setCharacter] = useState<any>(null);
 
-  // 1. Busca o personagem no seu localStorage
   useEffect(() => {
     const saved = localStorage.getItem("rpgSavedCharacters");
     if (saved) {
@@ -19,12 +17,10 @@ export default function CharacterDetails() {
     }
   }, [id]);
 
-  // 2. Dispara a criação do PDF
   const handlePrint = () => {
     window.print(); 
   };
 
-  // 3. Tela de loading ou "Não encontrado"
   if (!character) {
     return (
       <div className="min-h-screen bg-gray-900 flex items-center justify-center text-amber-50">
@@ -33,18 +29,15 @@ export default function CharacterDetails() {
     );
   }
 
-  // 4. Renderização Dupla (Uma para a Web, outra para o Papel)
   return (
     <div className="min-h-screen bg-gray-900/80">
       
-      {/* --- A) INTERFACE DA TELA (Escondida no PDF pela classe 'no-print') --- */}
       <div className="no-print p-8 flex flex-col items-center">
         <div className="w-full max-w-4xl mb-6 flex justify-between items-center">
           <Link to="/gallery" className="text-amber-100 hover:underline">
             ← Voltar
           </Link>
           
-          {/* O BOTÃO DO PDF */}
           <button
             onClick={handlePrint}
             className="bg-amber-600 hover:bg-amber-500 text-white px-4 py-2 rounded-lg font-bold shadow-lg transition-transform active:scale-95 flex items-center gap-2 cursor-pointer"
