@@ -22,9 +22,10 @@ export function CharacterCard({
   const classObj = CHARACTER_CLASSES.find((c) => c.id === characterClass);
 
   function getCharacterImage() {
-    if (!race || !characterClass || !gender) return "/images/placeholder.png";
-    return `/images/${race}-${characterClass}-${gender}.jpg`;
-  }
+  const baseUrl = import.meta.env.BASE_URL;
+  if (!race || !characterClass || !gender) return `${baseUrl}images/placeholder.png`;
+  return `${baseUrl}images/${race}-${characterClass}-${gender}.jpg`;
+}
 
   function getCharacterName() {
     return name || "";
@@ -58,7 +59,7 @@ export function CharacterCard({
               className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
             <img
-              src="/images/frame.png"
+              src={`${import.meta.env.BASE_URL}images/frame.png`}
               alt="Moldura"
               className="absolute inset-0 w-full h-full z-10 pointer-events-none object-fill"
             />
@@ -146,7 +147,7 @@ export function CharacterCard({
             className="absolute inset-0 w-full h-full object-cover"
           />
           <img
-            src="/images/frame.png"
+            src={`${import.meta.env.BASE_URL}images/frame.png`}
             alt="Moldura"
             className="absolute inset-0 w-full h-full z-10 pointer-events-none object-fill"
           />
