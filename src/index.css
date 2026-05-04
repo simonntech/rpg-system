@@ -10,3 +10,11 @@ body {
   background-attachment: fixed;
   background-position: center;
 }
+
+@media print {
+  .no-print { display: none !important; }
+  .print-only { display: block !important; }
+  
+  body { background: white !important; }
+  @page { margin: 0; } 
+}
