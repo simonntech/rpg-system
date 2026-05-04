@@ -20,7 +20,7 @@ export default function Home() {
       <div className="flex flex-col items-center w-full">
         <img src={Logo} alt="Logo" className="w-1/2 md:w-1/5 h-auto mb-6" />
         <div className="bg-amber-50/80 p-9 text-center w-full">
-          <h2 className="font-bold text-2xl">
+          <h2 className="font-bold text-xl mb-6">
             Crie e gerencie fichas de personagens de RPG de forma fácil e gratuita!
           </h2>
           <p>
@@ -28,7 +28,7 @@ export default function Home() {
             cadastro, salvo diretamente no seu dispositivo, exportação em PDF,
             tudo totalmente grátis!
           </p>
-          <p className="font-light text-sm">
+          <p className="font-light text-sm mt-4">
             Sistema para estudo de aplicação Web, não se baseia em nenhum
             sistema específico de RPG.
           </p>
