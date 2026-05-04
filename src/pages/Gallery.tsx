@@ -40,7 +40,7 @@ export default function Gallery() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-950 p-8">
+    <div className="min-h-screen bg-gray-950/60 p-8">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-4xl font-serif font-bold text-amber-50">
           Galeria de Personagens

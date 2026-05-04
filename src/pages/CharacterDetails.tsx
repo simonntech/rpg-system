@@ -17,14 +17,14 @@ export default function CharacterDetails() {
 
   if (!character) {
     return (
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center text-amber-50">
+      <div className="min-h-screen bg-gray-900/80 flex items-center justify-center text-amber-50">
         Personagem não encontrado...
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 p-8 flex flex-col items-center">
+    <div className="min-h-screen bg-gray-900/80 p-8 flex flex-col items-center">
       <div className="w-full max-w-4xl mb-6">
         <Link to="/gallery" className="text-amber-100 hover:underline">
           ← Voltar
