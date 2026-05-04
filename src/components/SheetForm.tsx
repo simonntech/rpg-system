@@ -8,7 +8,10 @@ export function SheetForm() {
   const { character, handleChange, saveCharacter } = useCharacterForm();
 
     return (
-    <form className="w-full max-w-lg md:max-w-3xl lg:max-w-5xl bg-amber-100/70 shadow-md rounded-2xl px-8 pt-6 pb-8 mb-4 gap-3 flex flex-col">
+    <form 
+    onSubmit={saveCharacter}
+    className="w-full max-w-lg md:max-w-3xl lg:max-w-5xl bg-amber-100/70 shadow-md rounded-2xl px-8 pt-6 pb-8 mb-4 gap-3 flex flex-col"
+    >
       <input
         type="text"
         name="name"
@@ -64,7 +67,7 @@ export function SheetForm() {
       <CharacterCard character={character} />
 
       <div className="flex flex-col items-center">
-        <Button text="Salvar Personagem" onclick={saveCharacter} />
+        <Button text="Salvar Personagem" onclick={()=> void 0} />
       </div>
     </form>
   );

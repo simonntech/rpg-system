@@ -16,15 +16,21 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-around min-h-screen">
+    <div className="flex flex-col items-center justify-between min-h-screen">
       <div className="flex flex-col items-center w-full">
         <img src={Logo} alt="Logo" className="w-1/2 md:w-1/5 h-auto mb-6" />
         <div className="bg-amber-50/80 p-9 text-center w-full">
           <h2 className="font-bold text-2xl">
-            Faça sua ficha de personagem de RPG
+            Crie e gerencie fichas de personagens de RPG de forma fácil e gratuita!
           </h2>
           <p>
-            Crie fichas de personagens de RPG, com ilustrações temáticas. Sem cadastro, salvo diretamente no seu dispositivo, exportação em PDF, tudo totalmente grátis!
+            Fichas de personagens de RPG, com ilustrações temáticas. Sem
+            cadastro, salvo diretamente no seu dispositivo, exportação em PDF,
+            tudo totalmente grátis!
+          </p>
+          <p className="font-light text-sm">
+            Sistema para estudo de aplicação Web, não se baseia em nenhum
+            sistema específico de RPG.
           </p>
         </div>
       </div>

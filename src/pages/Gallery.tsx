@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { CharacterCard } from "../components/CharacterCard";
 import SecondaryButton from "../components/SecondaryButton";
 
@@ -26,16 +26,17 @@ export default function Gallery() {
       setCharacters(updatedList);
       localStorage.setItem("rpgSavedCharacters", JSON.stringify(updatedList));
       setCharacters(updatedList);
-      localStorage.removeItem("rpgCharacterDeaft");
+      localStorage.removeItem("rpgCharacterDraft");
     }
   };
 
   const handleEditCharacter = (charToEdit: any) => {
     localStorage.setItem("rpgCharacterDraft", JSON.stringify(charToEdit));
-    navigate("/gallery");
+    navigate("/character-sheet");
   };
 
   function goToCreateCharacter() {
+    localStorage.removeItem("rpgCharacterDraft");
     navigate("/character-sheet");
   }
 
@@ -45,9 +46,9 @@ export default function Gallery() {
         <h1 className="text-4xl font-serif font-bold text-amber-50">
           Galeria de Personagens
         </h1>
-        <a href="/" className="text-amber-100 hover:underline">
+        <Link to="/" className="text-amber-100 hover:underline">
           Início
-        </a>
+        </Link>
       </div>
 
       {characters.length === 0 ? (

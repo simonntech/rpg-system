@@ -1,10 +1,11 @@
 import { SheetForm } from "../components/SheetForm";
+import { Link } from "react-router-dom";
 
 export default function CharacterSheet() {
   return (
     <div className="flex flex-col items-center justify-between min-h-screen gap-5">
       <div className="bg-black/70 w-full p-7">
-        <a href="/" className="bg-amber-100 text-amber-950 hover:text-amber-100 hover:bg-amber-950 p-2 rounded-lg">
+        <Link to="/" className="bg-amber-100 text-amber-950 hover:text-amber-100 hover:bg-amber-950 p-2 rounded-lg">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -20,7 +21,7 @@ export default function CharacterSheet() {
             />
           </svg>
           Voltar
-        </a>
+        </Link>
         <h1 className="text-4xl font-bold  text-amber-50 font-serif text-center mt-4">
           Novo Personagem
         </h1>
