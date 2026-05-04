@@ -5,12 +5,12 @@ export function PrintableSheet({ character }: { character: any }) {
   const raceObj = RACES.find((r) => r.id === character.race);
   const classObj = CHARACTER_CLASSES.find((c) => c.id === character.class);
 
-  const getCharacterImage = () => {
-    if (!character.race || !character.class || !character.gender) {
-      return "/images/placeholder.png";
-    }
-    return `/images/${character.race}-${character.class}-${character.gender}.jpg`;
-  };
+  function getCharacterImage() {
+    const baseUrl = import.meta.env.BASE_URL;
+    if (!character.race || !character.class || !character.gender)
+      return `${baseUrl}images/placeholder.png`;
+    return `${baseUrl}images/${character.race}-${character.class}-${character.gender}.jpg`;
+  }
 
   return (
     <div className="bg-white text-black p-10 w-[210mm] min-h-[297mm] mx-auto shadow-none border border-gray-300 flex flex-col">
