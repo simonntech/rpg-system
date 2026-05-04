@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
 import CharacterSheet from "./pages/CharacterSheet";
@@ -7,7 +7,7 @@ import CharacterDetails from "./pages/CharacterDetails";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<Home />} />
 
@@ -17,6 +17,6 @@ export default function App() {
 
         <Route path="/character/:id" element={<CharacterDetails />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
